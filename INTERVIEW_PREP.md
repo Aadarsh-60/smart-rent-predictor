@@ -7,16 +7,16 @@ This guide prepares you to present, explain, and defend the **Smart Rent Predict
 ## 🎙️ 1. Project Pitch (How to Introduce the Project)
 
 ### The 30-Second Elevator Pitch
-> *"I built **Smart Rent Predictor**, an end-to-end machine learning web application that predicts house rent prices and evaluates tenant affordability across Indian metropolitan cities. Using a real-world dataset of ~4,700 property listings, I engineered spatial and structural features, benchmarked candidate algorithms from Linear Regression to Random Forest, and deployed an interactive Streamlit dashboard featuring 80% prediction confidence intervals, dynamic Plotly analytics, and budget health gauges."*
+> *"I built **Smart Rent Predictor**, an end-to-end machine learning web application that predicts house rent prices and evaluates tenant affordability across 22+ states and 40+ cities in India. Using a Pan-India dataset of over 6,400 property listings, I engineered spatial, demographic, and structural features, benchmarked candidate algorithms from Linear Regression to Random Forest, and deployed an interactive Streamlit dashboard featuring 80% prediction confidence intervals, realistic budget-alternative recommendations, dynamic Plotly analytics, and budget health gauges."*
 
 ### The 2-Minute Architectural Deep-Dive
-> *"The motivation behind this project was addressing rent opacity and financial overcommitment for renters in Indian metros. Many rental platforms offer listing prices, but renters lack data-backed valuation and budget affordability guardrails.*
+> *"The motivation behind this project was addressing rent opacity and financial overcommitment for renters in Indian metros. Many rental platforms offer listing prices, but renters lack data-backed valuation and budget affordability guardrails.
 >
 > *I designed a modular pipeline with four distinct phases:*
-> 1. *Data Processing: Removed extreme rent outliers (> ₹100,000/month) and engineered domain features like `Size_per_BHK` (spaciousness density) and `Bathroom` counts.*
-> 2. *Preprocessing: Built strict leak-free pipelines using `StandardScaler` fitted strictly on training data, combined with one-hot encoding for categorical variables (`City`, `Furnishing Status`, `Tenant Preferred`).*
-> 3. *Model Benchmarking: Evaluated four candidate architectures — Linear Regression, Ridge Regularization, Decision Trees, and Random Forest. Random Forest emerged as champion with an $R^2$ of ~0.70 and MAE of ~₹6,687, effectively capturing non-linear city-size interactions.*
-> 4. *Deployment & UX: Built a multi-tab Streamlit dashboard that delivers point predictions alongside ensemble-spread confidence intervals, budget gauge visualizations based on the personal finance 30–40% rule, and localized neighborhood recommendations.*
+> 1. *Data Processing: Expanded coverage across 22 Indian states (Tier 1, 2, and 3 cities) and engineered domain features like `Size_per_BHK` (spaciousness density), `Bathroom` counts, and `Locality_Zone` (Suburbs vs Prime).*
+> 2. *Preprocessing: Built strict leak-free pipelines using `StandardScaler` fitted strictly on training data, combined with one-hot encoding for categorical variables (`State`, `City`, `City_Tier`, `Locality_Zone`, `Furnishing Status`, `Tenant Preferred`).*
+> 3. *Model Benchmarking: Evaluated four candidate architectures — Linear Regression, Ridge Regularization, Decision Trees, and Random Forest. Random Forest emerged as champion with an $R^2$ of ~0.94 and MAE of ~₹2,875, effectively capturing hierarchical geographic and spatial interactions.*
+> 4. *Deployment & UX: Built a multi-tab Streamlit dashboard that delivers point predictions alongside ensemble-spread confidence intervals, budget health gauges based on the personal finance 30–40% rule, and realistic alternatives when desired properties exceed tenant budgets.*
 
 ---
 
@@ -132,11 +132,11 @@ flowchart TD
 
 | Item | Details |
 | :--- | :--- |
-| **Dataset Size** | 4,746 Listings (6 Metro Cities) |
+| **Dataset Size** | 6,446 Listings (22+ States, 40+ Cities across India) |
 | **Target Variable** | Monthly Rent (in ₹ INR) |
 | **Champion Model** | Random Forest Regressor (100 estimators) |
-| **Evaluation Metrics** | $R^2 \approx 0.70$ \| $\text{MAE} \approx ₹6,687$ \| $\text{RMSE} \approx ₹10,828$ |
-| **Top 3 Features** | Size (sq. ft.), City (Mumbai premium), Bathroom count |
+| **Evaluation Metrics** | $R^2 \approx 0.9421$ \| $\text{MAE} \approx ₹2,875$ \| $\text{RMSE} \approx ₹4,236$ |
+| **Top Features** | Size (sq. ft.), State/City Tier, Locality Zone, Bathroom count |
 | **Tech Stack** | Python 3.11, Scikit-Learn, Pandas, Streamlit, Plotly, Joblib |
 | **Live App** | Streamlit Web Dashboard (`http://localhost:8501`) |
 | **Author** | Aadarsh Vikram |

@@ -24,16 +24,16 @@ An end-to-end Machine Learning web application designed to predict residential h
 
 ## 📊 Model Benchmarking & Results
 
-Candidate algorithms evaluated on an 80/20 train-test split:
+Candidate algorithms evaluated on an 80/20 train-test split (Pan-India Dataset across 22+ States):
 
 | Algorithm | MAE (₹ INR) | RMSE (₹ INR) | $R^2$ Score | Training Time |
 | :--- | :---: | :---: | :---: | :---: |
-| **Random Forest Regressor (Champion)** | **₹6,687.71** | **₹10,828.73** | **0.6964** | **0.177s** |
-| Decision Tree Regressor | ₹6,809.96 | ₹11,037.84 | 0.6846 | 0.007s |
-| Ridge Regression (L2) | ₹8,038.82 | ₹11,828.30 | 0.6378 | 0.007s |
-| Linear Regression (OLS) | ₹8,041.89 | ₹11,830.10 | 0.6377 | 0.074s |
+| **Random Forest Regressor (Champion)** | **₹2,875.36** | **₹4,236.84** | **0.9421** | **0.494s** |
+| Decision Tree Regressor | ₹4,207.33 | ₹6,414.22 | 0.8673 | 0.038s |
+| Ridge Regression (L2) | ₹4,629.67 | ₹6,520.44 | 0.8629 | 0.047s |
+| Linear Regression (OLS) | ₹4,631.83 | ₹6,531.99 | 0.8624 | 0.241s |
 
-> **Key Finding**: Housing rent exhibits strong non-linear interaction between property size and city tier (e.g. Mumbai location premium). Random Forest effectively captures these non-linearities while reducing variance through bagging.
+> **Key Finding**: Incorporating hierarchical geographical features (`State`, `City_Tier`, and `Locality_Zone`) enabled Random Forest to model sub-market pricing variance with exceptional fidelity, boosting $R^2$ from ~0.70 to **0.9421** and cutting prediction error (MAE) down to **₹2,875**.
 
 ---
 

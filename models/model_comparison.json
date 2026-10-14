@@ -1,26 +1,26 @@
 {
   "Linear Regression": {
-    "MAE": 8041.89,
-    "RMSE": 11830.1,
-    "R2": 0.6377,
-    "TrainTime_s": 0.0737
+    "MAE": 4631.83,
+    "RMSE": 6531.99,
+    "R2": 0.8624,
+    "TrainTime_s": 0.2406
   },
   "Ridge Regression": {
-    "MAE": 8038.82,
-    "RMSE": 11828.3,
-    "R2": 0.6378,
-    "TrainTime_s": 0.0072
+    "MAE": 4629.67,
+    "RMSE": 6520.44,
+    "R2": 0.8629,
+    "TrainTime_s": 0.0469
   },
   "Decision Tree": {
-    "MAE": 6809.96,
-    "RMSE": 11037.84,
-    "R2": 0.6846,
-    "TrainTime_s": 0.0066
+    "MAE": 4207.33,
+    "RMSE": 6414.22,
+    "R2": 0.8673,
+    "TrainTime_s": 0.0379
   },
   "Random Forest": {
-    "MAE": 6687.71,
-    "RMSE": 10828.73,
-    "R2": 0.6964,
-    "TrainTime_s": 0.177
+    "MAE": 2875.36,
+    "RMSE": 4236.84,
+    "R2": 0.9421,
+    "TrainTime_s": 0.4943
   }
 }
