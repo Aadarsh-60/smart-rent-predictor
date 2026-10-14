@@ -14,6 +14,8 @@ seaborn
 # For creating the dashboard
 streamlit==1.32.2
 altair==4.2.2
+plotly
+pyarrow<18
 
 # For notebook environment
 jupyter

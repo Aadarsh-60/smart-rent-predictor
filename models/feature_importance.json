@@ -1,0 +1,15 @@
+{
+  "Size": 0.3975,
+  "City_Mumbai": 0.3036,
+  "Size_per_BHK": 0.0795,
+  "Bathroom": 0.0777,
+  "BHK": 0.0235,
+  "Tenant Preferred_Bachelors/Family": 0.0221,
+  "Furnishing Status_Semi-Furnished": 0.0206,
+  "Furnishing Status_Unfurnished": 0.02,
+  "City_Delhi": 0.0197,
+  "City_Hyderabad": 0.0123,
+  "Tenant Preferred_Family": 0.0111,
+  "City_Chennai": 0.0081,
+  "City_Kolkata": 0.0042
+}

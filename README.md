@@ -1,143 +1,121 @@
-# 🏠 Smart Rent Advisor
+# 🏠 Smart Rent Predictor & Advisory
 
-Smart Rent Advisor is a machine learning project that predicts house rent prices based on various features like size, location, furnishing status, and more. Designed for renters, real estate analysts, and property platforms, it leverages a Random Forest model trained on real-world data.
+[![Python](https://img.shields.io/badge/Python-3.11-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
+[![Streamlit](https://img.shields.io/badge/Streamlit-1.32-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)](https://streamlit.io)
+[![Scikit-Learn](https://img.shields.io/badge/scikit--learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white)](https://scikit-learn.org)
+[![Plotly](https://img.shields.io/badge/Plotly-Analytics-3F4F75?style=for-the-badge&logo=plotly&logoColor=white)](https://plotly.com)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)](LICENSE)
 
----
-
-# 📊 Project Objective
-To build a predictive model that accurately estimates house rent based on user-defined features, helping:<br>
-
-Users find affordable housing.<br>
-
-Property owners price their listings.<br>
-
-Real estate platforms provide rent insights.<br>
+An end-to-end Machine Learning web application designed to predict residential house rents across major Indian metropolitan cities (Mumbai, Delhi, Bangalore, Hyderabad, Chennai, Kolkata) and provide personal financial affordability advisory with localized neighborhood recommendations.
 
 ---
 
-# 🎓 Key Features
-🎯 Random Forest-based rent prediction <br>
+## 🌟 Key Highlights
 
-🎯 Cleaned & preprocessed housing dataset <br>
-
-🎯 Feature importance insights <br>
-
-🎯 Visualizations: Feature importances, actual vs. predicted rents <br>
-
-🎯 Modular pipeline (EDA, preprocessing, training, dashboard) <br>
+* 🎯 **Ensemble Rent Prediction**: Random Forest Regressor yielding $R^2 \approx 0.70$ and $\text{MAE} \approx ₹6,687$.
+* 📊 **Confidence Intervals**: 80% prediction interval derived from individual decision tree variance to communicate market uncertainty.
+* 💡 **Financial Health Advisory**: Implements the personal finance 30%–40% affordability rule with interactive Plotly gauge visualization.
+* 📈 **Interactive Market Analytics**: City-wise comparisons, BHK distributions, and price-per-square-foot analysis powered by Plotly.
+* 🏆 **Multi-Model Benchmarking**: Evaluates and compares Linear Regression, Ridge Regularization, Decision Trees, and Random Forest.
+* 🧭 **Neighborhood Locality Explorer**: Filter and search through real-world listings across metro localities by budget and space.
+* 🎓 **Interview Ready**: Complete [INTERVIEW_PREP.md](INTERVIEW_PREP.md) guide with architecture, design rationale, and 10+ technical Q&A pairs.
 
 ---
 
+## 📊 Model Benchmarking & Results
+
+Candidate algorithms evaluated on an 80/20 train-test split:
+
+| Algorithm | MAE (₹ INR) | RMSE (₹ INR) | $R^2$ Score | Training Time |
+| :--- | :---: | :---: | :---: | :---: |
+| **Random Forest Regressor (Champion)** | **₹6,687.71** | **₹10,828.73** | **0.6964** | **0.177s** |
+| Decision Tree Regressor | ₹6,809.96 | ₹11,037.84 | 0.6846 | 0.007s |
+| Ridge Regression (L2) | ₹8,038.82 | ₹11,828.30 | 0.6378 | 0.007s |
+| Linear Regression (OLS) | ₹8,041.89 | ₹11,830.10 | 0.6377 | 0.074s |
+
+> **Key Finding**: Housing rent exhibits strong non-linear interaction between property size and city tier (e.g. Mumbai location premium). Random Forest effectively captures these non-linearities while reducing variance through bagging.
+
+---
+
+## 🔍 Top Predictive Features
+
+1. **Property Size (Sq. Ft.)** — 34.4%
+2. **City (Mumbai Premium)** — 31.5%
+3. **Bathroom Count** — 12.7% *(Engineered)*
+4. **Room Density (`Size_per_BHK`)** — 7.9% *(Engineered)*
+5. **City (Delhi)** — 2.3%
+6. **Furnishing Status (Unfurnished)** — 2.1%
+
+---
 
 ## 🗂️ Project Structure
+
 ```
-smart-rent-advisor/
-├── app.py              # 🔹 Streamlit dashboard
+smart-rent-predictor/
+├── app.py                      # Root Streamlit entry point
+├── dashboard/
+│   └── app.py                  # Full multi-tab Streamlit & Plotly UI
 ├── data/
-│ ├── raw/              # 📂 Cleaned & raw datasets
-│ └── processed/              # 📂 (Optional) Transformed sets
-├── models/              # 📁 Trained models and scalers
-│ ├── random_forest_model.pkl
-│ └── scaler.pkl
-├── notebooks/              # 📒 Jupyter Notebooks (EDA, modeling)
-├── plots/              # 📊 Visualizations
+│   └── raw/
+│       ├── house_rent.csv      # Raw dataset (~4,746 property listings)
+│       └── cleaned_data.csv    # Cleaned dataset (outliers removed)
+├── models/
+│   ├── random_forest_model.pkl # Trained Random Forest Regressor
+│   ├── scaler.pkl              # Fitted StandardScaler
+│   ├── training_columns.pkl    # One-hot encoded feature column schema
+│   ├── model_comparison.json   # Benchmark metrics for all candidate models
+│   ├── feature_importance.json # Gini impurity feature importances
+│   └── test_predictions.json   # Actual vs predicted validation sample
+├── notebooks/
+│   └── eda_modeling.ipynb      # Jupyter notebook for exploratory analysis
+├── plots/                      # Visualizations (EDA, distributions)
 ├── src/
-│ ├── data_cleaning.py              # 🔧 Cleaning logic
-│ ├── utils.py              # 🧠 Preprocessing functions
-│ └── train_model.py              # 🏋️ Model training script
-└── README.md              # 🧾 Project overview
-└── README_DEV.md              # 🧾 For Developers
+│   ├── data_cleaning.py        # Outlier filtering logic
+│   ├── utils.py                # Preprocessing, feature engineering & scaling
+│   └── train_model.py          # Model training & benchmarking pipeline
+├── INTERVIEW_PREP.md           # 🎓 Technical Interview Master Guide
+├── requirements.txt            # Python dependencies
+└── README.md                   # Project overview & documentation
 ```
-
----
-
-# 📈 Visualizations
-
-### Rent Distribution
-![Rent Distribution](plots/rent_dist.png)
-
-### Rent vs. BHKs (Bedroom, Hall, Kitchen)
-![Rent vs. BHK](plots/rent_vs_bhk.png)
-
-### Average Rent by City
-![Average Rent by City](plots/average_rent_by_city.png)
-
-### Feature Importance
-![Feature Importance](plots/feature_importance.png)
-
-### Actual vs. Predicted Rent
-![Actual vs. Predicted Rent (in Rs.)](plots/actual_vs_predicted_density.png)
-
----
-
-# ⚙️ Tech Stack
-
-    ♦️ Python 3.11+
-
-    ♦️ Pandas, Scikit-learn, Matplotlib, Seaborn
-
-    ♦️ Streamlit (for dashboard)
-
-    ♦️ Joblib (for model serialization)
 
 ---
 
 ## 🚀 Quick Start
 
-### ✅ 1. Create & Activate Virtual Environment
-
+### 1. Clone the Repository
 ```bash
-# Create venv
-python -m venv venv
-
-# Activate
-.\venv\Scripts\activate      # Windows
-# or
-source venv/bin/activate     # macOS/Linux
+git clone https://github.com/Aadarsh-60/smart-rent-predictor.git
+cd smart-rent-predictor
 ```
 
-### ✅ 2. Install Dependencies
-
+### 2. Set Up Virtual Environment & Dependencies
 ```bash
+python3 -m venv venv
+source venv/bin/activate       # On Linux/macOS
+# or: .\venv\Scripts\activate  # On Windows
+
 pip install -r requirements.txt
 ```
 
-If you don't have one, generate with:
-
-```bash
-pip freeze > requirements.txt
-```
-
-### ✅ 4. Train the Model
-
-```bash
-python src/train_model.py
-```
-Outputs:
-
-Model: models/random_forest_model.pkl
-
-Scaler: models/scaler.pkl
-
-### ✅ 5. Launch the Streamlit App
-
+### 3. Run the Streamlit Dashboard
 ```bash
 streamlit run app.py
 ```
+Open [http://localhost:8501](http://localhost:8501) in your browser.
+
+### 4. (Optional) Re-train & Benchmark Models
+```bash
+python src/train_model.py
+```
 
 ---
 
-# 📊 Sample Results
-    ⌛ MAE: ~6,800 INR
-
-    ⌛ R² Score: ~0.70
-
-    ⌛ Most important features: Size, City_Mumbai, BHK
-
+## 👨‍💻 Author
+**Aadarsh Vikram**  
+* GitHub: [@Aadarsh-60](https://github.com/Aadarsh-60)
+* Email: [vikramaadarsh2001@gmail.com](mailto:vikramaadarsh2001@gmail.com)
 
 ---
 
-👨‍💻 Author <br>
-Aadarsh Vikram
-
----
+## 📄 License
+This project is open-source and licensed under the [MIT License](LICENSE).
