@@ -115,6 +115,6 @@ Feel free to create issues or send pull requests!
 ---
 
 👨‍💻 Author
-Yash Kr. Shaw
+Aadarsh Vikram
 
 ---

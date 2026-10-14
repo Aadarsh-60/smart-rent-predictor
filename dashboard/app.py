@@ -20,12 +20,18 @@ def load_artifacts():
     Returns a tuple of (model, scaler, data).
     """
 
-    # Construct paths relative to the app.py file
-    # ../models/random_forest_model.pkl
-    model_path = os.path.join('models', 'random_forest_model.pkl')
-    scaler_path = os.path.join('models', 'scaler.pkl')
-    columns_path = os.path.join('models', 'training_columns.pkl')
-    data_path = os.path.join('data', 'raw', 'cleaned_data.csv')
+    # Construct paths relative to the project root directory
+    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    model_path = os.path.join(base_dir, 'models', 'random_forest_model.pkl')
+    scaler_path = os.path.join(base_dir, 'models', 'scaler.pkl')
+    columns_path = os.path.join(base_dir, 'models', 'training_columns.pkl')
+    data_path = os.path.join(base_dir, 'data', 'raw', 'cleaned_data.csv')
+
+    if not os.path.exists(model_path):
+        model_path = os.path.join('models', 'random_forest_model.pkl')
+        scaler_path = os.path.join('models', 'scaler.pkl')
+        columns_path = os.path.join('models', 'training_columns.pkl')
+        data_path = os.path.join('data', 'raw', 'cleaned_data.csv')
 
     try:
         model = joblib.load(model_path)
@@ -168,4 +174,4 @@ else:
 
 
 st.divider()
-st.caption("Built with ❤️ by Yash")
+st.caption("Built with ❤️ by Aadarsh")
