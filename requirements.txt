@@ -6,6 +6,7 @@ numpy
 
 # For model building
 scikit-learn
+joblib
 
 # For data visualization
 matplotlib

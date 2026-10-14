@@ -89,7 +89,16 @@ st.markdown("""
 # --- Caching for Performance ---
 @st.cache_resource
 def load_all_artifacts():
-    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    current_file_path = os.path.abspath(__file__)
+    candidates = [
+        os.path.dirname(os.path.dirname(current_file_path)),  # if executed as dashboard/app.py
+        os.path.dirname(current_file_path),                   # if executed as root app.py
+        os.getcwd(),                                          # working directory
+    ]
+    base_dir = next(
+        (c for c in candidates if os.path.exists(os.path.join(c, 'models', 'random_forest_model.pkl'))),
+        os.path.dirname(os.path.dirname(current_file_path))
+    )
     
     model_path = os.path.join(base_dir, 'models', 'random_forest_model.pkl')
     scaler_path = os.path.join(base_dir, 'models', 'scaler.pkl')
