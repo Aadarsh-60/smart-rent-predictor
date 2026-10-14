@@ -138,6 +138,6 @@ streamlit run app.py
 ---
 
 👨‍💻 Author <br>
-Yash Kr. Shaw
+Aadarsh Vikram
 
 ---
